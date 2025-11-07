@@ -1,0 +1,79 @@
+{
+	"type"	:	"object",
+	"properties": {
+		"name": {
+			"type": "object",
+			"properties": {
+				"firstName": {"type": "string"},
+				"middleName": {"type": "string"},
+				"lastName": {"type": "string"},
+				"fullName": {"type": "string"}
+			},
+			"required": ["firstName", "middleName", "lastName", "fullName"]
+		},
+		"dateOfBirth":	{
+			"type":	"object",
+			"properties":	{
+				"age":	{"type":	"string"}
+			},
+			"required":	["age"]
+		},
+		"criminal":	{
+			"type":	"object",
+			"properties":	{
+				"offenses":	{
+					"type":	"array",
+					"items":	{
+						"type":	"object",
+						"properties":	{
+							"description":	{"type":	"string"}
+						},
+						"required":	["description"]
+					}
+				},
+				"charges":	{
+					"type":	"array",
+					"items":	{
+						"type":	"object",
+						"properties":	{
+							"description":	{"type":	"string"},
+							"code":	{"type"	:	"string"}
+						},
+						"required":	["description","code"]
+					}
+				},
+				"arrest": {
+					"type":	"object",
+					"properties":	{
+						"offenseDate":	{"type": "string"},
+						"bookingNumber":	{"type": "string"},
+						"caseNumber":	{"type": "string"},
+						"description":	{"type": "string"}
+					},
+					"required":	["offenseDate","bookingNumber","caseNumber","description"]
+				},
+				"source": {
+					"type":	"object",
+					"properties":	{
+						"name":	{"type": "string"},
+						"city":	{"type": "string"},
+						"county":	{"type": "string"},
+						"state":	{"type": "string"}
+					},
+					"required":	["name","city","county","state"]
+				},
+				"location": {
+					"type":	"object",
+					"properties":	{
+						"streetAddress":	{"type": "string"},
+						"city":	{"type": "string"},
+						"state":	{"type": "string"}
+					},
+					"required":	["streetAddress","city","state"]
+				}
+			},
+			"required":	["offenses","charges","arrest","source","location"]
+		}
+	},
+	"required":	["name","dateOfBirth","criminal"]
+}
