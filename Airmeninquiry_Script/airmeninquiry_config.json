@@ -1,0 +1,72 @@
+{
+	"msg_group_id"		:	"airmeninquiry-output",
+	"useragent"			:	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36",
+	"min_sleep"			:	1,
+	"max_sleep"			:	3,
+	"home_page_url"		:	"https://amsrvs.registry.faa.gov/airmeninquiry/",
+	"home_page_headers"	:	{"upgrade-insecure-requests": "1","user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36","authority":"amsrvs.registry.faa.gov"},
+	"site_maintenance_reg"	:	"<p[^>]*?class=\"message\"[^>]*?>\\s*This\\s*application\\s*is\\s*un\\-available\\s*while\\s*scheduled\\s*system\\s*maintenance\\s*is\\s*performed\\s*\\.\\s*<\\/p>",
+	"search_page"		:
+	{
+		"url"			:	"https://amsrvs.registry.faa.gov/airmeninquiry/",
+		"method"		:	"post",
+		"headers"		:	{"Upgrade-Insecure-Requests": "1","User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36","Content-Type": "application/x-www-form-urlencoded","Referer": "https://amsrvs.registry.faa.gov/airmeninquiry/"},
+		"parameter"		:	{"__LASTFOCUS":"","__VIEWSTATE":"","__VIEWSTATEGENERATOR":"","__EVENTTARGET":"","__EVENTARGUMENT":"","__VIEWSTATEENCRYPTED":"","__EVENTVALIDATION":"","typAirmenInquiry":"","ctl00$content$ctl01$txtbxLastName":"","ctl00$content$ctl01$txtbxCertNo":"","ctl00$content$ctl01$txtbxFirstName":"","ctl00$content$ctl01$ddlSearchBirthMonth":"00","ctl00$content$ctl01$ddlSearchBirthDay":"0","ctl00$content$ctl01$txtbxSearchBirthYear":"","ctl00$content$ctl01$txtbxCity":"","ctl00$content$ctl01$ddlSearchState":"  ","ctl00$content$ctl01$ddlSearchCountry":"","ctl00$content$ctl01$txtParachuteSeal":"","ctl00$content$ctl01$btnSearch":"Search","hor":"horizontal"},
+		"parameter_regex"	:	{"__VIEWSTATE":"<input[^>]*?name=\"__VIEWSTATE\"[^>]*?value=\"([^\"]+?)\"[^>]*?>","__VIEWSTATEGENERATOR":"<input[^>]*?name=\"__VIEWSTATEGENERATOR\"[^>]*?value=\"([^\"]+?)\"[^>]*?>","__EVENTVALIDATION":"<input[^>]*?name=\"__EVENTVALIDATION\"[^>]*?value=\"([^\"]+?)\"[^>]*?>","typAirmenInquiry":"<input[^>]*?name=\"typAirmenInquiry\"[^>]*?value=\"([^\"]+?)\"[^>]*?>"}		
+	},
+	"detail_page"		:
+	{
+		"url"			:	"https://amsrvs.registry.faa.gov/airmeninquiry/Main.aspx",
+		"method"		:	"post",
+		"headers"		:	{"Upgrade-Insecure-Requests": "1","User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36","Content-Type": "application/x-www-form-urlencoded","Referer": "https://amsrvs.registry.faa.gov/airmeninquiry/Main.aspx"},
+		"parameter"		:	{"__LASTFOCUS":"","__EVENTTARGET":"","__EVENTARGUMENT":"","__VIEWSTATE":"","__VIEWSTATEGENERATOR":"","__VIEWSTATEENCRYPTED":"","__EVENTVALIDATION":"","typAirmenInquiry":"","ctl00$content$ctl01$txtbxLastName":"","ctl00$content$ctl01$txtbxCertNo":"","ctl00$content$ctl01$txtbxFirstName":"","ctl00$content$ctl01$ddlSearchBirthMonth":"00","ctl00$content$ctl01$ddlSearchBirthDay":"0","ctl00$content$ctl01$txtbxSearchBirthYear":"","ctl00$content$ctl01$txtbxCity":"","ctl00$content$ctl01$ddlSearchState":"  ","ctl00$content$ctl01$ddlSearchCountry":"","ctl00$content$ctl01$txtParachuteSeal":"","hor":"horizontal"},
+		"parameter_regex"	:	{"__VIEWSTATE":"<input[^>]*?name=\"__VIEWSTATE\"[^>]*?value=\"([^\"]+?)\"[^>]*?>","__VIEWSTATEGENERATOR":"<input[^>]*?name=\"__VIEWSTATEGENERATOR\"[^>]*?value=\"([^\"]+?)\"[^>]*?>","__EVENTVALIDATION":"<input[^>]*?name=\"__EVENTVALIDATION\"[^>]*?value=\"([^\"]+?)\"[^>]*?>","typAirmenInquiry":"<input[^>]*?name=\"typAirmenInquiry\"[^>]*?value=\"([^\"]+?)\"[^>]*?>"},
+		"list_param_reg"	:	"<a[^>]*?id=\"ctl\\d+_content_ctl\\d+_drAirmenList_ctl\\d+_lnkbtnAirmenName\"[^>]*?href=\"javascript:__doPostBack\\(&#39;([^>]*?)&#39;\\,&#39;&#39;\\)\">\\s*([^<]+?)\\s*<\\/a>"
+	},
+	"output_regex"		:
+	{
+		"personal_info_block"	:	"<div[^>]*?id=\"divPersonalInfo\"[^>]*?>([\\w\\W]+?)<\\/div>",
+		"Name"					:	"<span[^>]*?class=\"Cert_Name\"[^>]*?>([\\w\\W]*?)<\\/span>",
+		"Address"				:	"<span[^>]*?class=\"Cert_Name\"[^>]*?>[\\w\\W]*?<\\/span>[\\w\\W]*?<label[^>]*?>([\\w\\W]+?<label[^>]*?>[^>]+?\\s+[A-Z]{2}(?:&nbsp;|\\s)*?[\\d\\-]+?)\\s*<",
+		"State"					:	"<span[^>]*?class=\"Cert_Name\"[^>]*?>[\\w\\W]*?<\\/span>[\\w\\W]*?<label[^>]*?>[\\w\\W]+?<label[^>]*?>[^>]+?\\s+([A-Z]{2})(?:&nbsp;|\\s)*?[\\d\\-]+?\\s*<",
+		"Country"				:	">\\s*Country\\s*:\\s*<\\/b>(?:\\s|&nbsp;)*?([^<]+?)<\\/label>",
+		"County"				:	">\\s*County\\s*:\\s*<\\/b>(?:\\s|&nbsp;)*?([^<]+?)<\\/label>",
+		"Medical Class"			:	"<span[^>]*?class=\"Cert_Info\"[^>]*?>\\s*<b[^>]*?>\\s*Medical\\s*Class\\s*:\\s*<\\/b>\\s*([^<]+?)\\s*<",
+		"Medical Date"			:	"<b[^>]*?>\\s*Medical\\s*Date\\s*:\\s*<\\/b>\\s*([^<]+?)\\s*<",
+		"BasicMed Course Date"	:	"<label[^>]*?class=\"Cert_Info\"[^>]*?>\\s*<b[^>]*?>\\s*BasicMed\\s*Course\\s*Date\\s*:\\s*<\\/b>\\s*([^<]+?)\\s*<",
+		"BasicMed CMEC Date"	:	"<b[^>]*?>\\s*BasicMed\\s*CMEC\\s*Date\\s*:\\s*<\\/b>\\s*([^<]+?)\\s*<",
+		"Certificate"			:	"<div[^>]*?id=\"TabBody\\d+\"[^>]*?>([\\w\\W]+?)<\\/div>",
+		"IssueYear"				:	"<b[^>]*?>\\s*Date\\s*of\\s*Issue\\s*:\\s*<\\/b>(?:\\s|&nbsp;)*?\\d+\\/\\d+\\/(\\d+)(?:\\s|&nbsp;)*?<",
+		"IssueMonth"			:	"<b[^>]*?>\\s*Date\\s*of\\s*Issue\\s*:\\s*<\\/b>(?:\\s|&nbsp;)*?(\\d+)\\/\\d+\\/\\d+(?:\\s|&nbsp;)*?<",
+		"IssueDay"				:	"<b[^>]*?>\\s*Date\\s*of\\s*Issue\\s*:\\s*<\\/b>(?:\\s|&nbsp;)*?\\d+\\/(\\d+)\\/\\d+(?:\\s|&nbsp;)*?<",
+		"LicenseTypeName"		:	"<b>\\s*Certificate\\s*:\\s*<\\/b>([\\w\\W]+?)<b>",
+		"Ratings"				:	"<label[^>]*?>\\s*<b>\\s*Ratings\\s*:\\s*<\\/b>([\\w\\W]+?)<\\/?label[^>]*?>",
+		"Type Ratings"			:	"<b>\\s*Type\\s*Ratings\\s*:\\s*<\\/b><table[^>]*?>([\\w\\W]+?)<\\/?label[^>]*?>",
+		"Limit"					:	"<label[^>]*?>\\s*Limits\\s*:\\s*<\\/label>([\\w\\W]+?)<\\/label>"
+	},
+	"log_config"	:
+	{
+		"version":1,
+		"root":{
+			"handlers" : ["console"],
+			"level": "DEBUG"
+		},
+		"handlers":{
+			"console":{
+				"formatter": "con_out",
+				"class": "logging.StreamHandler",
+				"level": "INFO"
+			}
+		},
+		"formatters":{
+			"std_out": {
+				"format": "%(asctime)s : %(levelname)s : %(module)s : %(funcName)s : %(lineno)d : Log : %(message)s",
+				"datefmt":"%d-%m-%Y %I:%M:%S"
+			},
+			"con_out":	{
+				"format":	"%(asctime)s : %(levelname)s : %(module)s : %(funcName)s : %(lineno)d : Log : %(message)s",
+				"datefmt":"%d-%m-%Y %I:%M:%S"
+			}
+		}
+	}
+}

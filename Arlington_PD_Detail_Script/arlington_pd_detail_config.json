@@ -1,0 +1,59 @@
+{
+	"useragent"			:	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36",
+	"msg_group_id"		:	"arlington-pd-final-output",
+	"anticaptcha"		:
+	{
+		"task_url"		:	"https://api.anti-captcha.com/createTask",
+		"result_url"	:	"https://api.anti-captcha.com/getTaskResult",
+		"task_parameter":	{"clientKey":"","task":{"type":"RecaptchaV2TaskProxyless","websiteURL":"","websiteKey":""},"softId": 0},
+		"headers"		:	{"Accept": "application/json","Content-Type": "application/json"}
+	},
+	"captcha_fail_regex"	:	"<span[^>]*?id=\"lblMessage\"[^>]*?>\\s*Error\\(s\\)\\:\\s*invalid\\-input\\-response\\s*<\\/span>",
+	"public_report"			:
+	{
+		"url"				:	"https://arlingtonpd.org/webapps/publicreport/Default.aspx",
+		"headers"			:	{"Upgrade-Insecure-Requests": "1","User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"},
+		"option_post_param"	:	{"__EVENTTARGET":"ddlSearchType","__EVENTARGUMENT":"","__LASTFOCUS":"","__VIEWSTATE":"","__VIEWSTATEGENERATOR":"","__EVENTVALIDATION":"","ddlSearchType":""},
+		"option_post_param_reg"	:	{"__VIEWSTATE":"<input[^>]*?name=\"__VIEWSTATE\"[^>]*?value=\"([^\"]+?)\"[^>]*?>","__VIEWSTATEGENERATOR":"<input[^>]*?name=\"__VIEWSTATEGENERATOR\"[^>]*?value=\"([^\"]+?)\"[^>]*?>","__EVENTVALIDATION":"<input[^>]*?name=\"__EVENTVALIDATION\"[^>]*?value=\"([^\"]+?)\"[^>]*?>","ddlSearchType":"<option[^>]*?value=\"([^\"]+?)\"[^>]*?>\\s*Case\\s*Number\\s*<\\/option>"},
+		"caseno_search_post_param"	:	{"__LASTFOCUS": "","__EVENTTARGET": "","__EVENTARGUMENT": "","__VIEWSTATE": "","__VIEWSTATEGENERATOR": "","__EVENTVALIDATION": "","ddlSearchType": "","txtCaseNumber": "","g-recaptcha-response": "","btnSearch": "Search"},
+		"caseno_search_post_param_reg"	:	{"__VIEWSTATE":"<input[^>]*?name=\"__VIEWSTATE\"[^>]*?value=\"([^\"]+?)\"[^>]*?>","__VIEWSTATEGENERATOR":"<input[^>]*?name=\"__VIEWSTATEGENERATOR\"[^>]*?value=\"([^\"]+?)\"[^>]*?>","__EVENTVALIDATION":"<input[^>]*?name=\"__EVENTVALIDATION\"[^>]*?value=\"([^\"]+?)\"[^>]*?>","ddlSearchType":"<option[^>]*?value=\"([^\"]+?)\"[^>]*?>\\s*Case\\s*Number\\s*<\\/option>"},
+		"site_key_reg"		:	"<div[^>]*?class=\"g-recaptcha\"[^>]*?data-sitekey=\"([^\"]+?)\"[^>]*?>"
+	},
+	"output_regex"			:
+	{
+		"public_report_case_number"	:	"<input[^>]*?name=\"txtCaseNumber\"[^>]*?value=\"([^\"]+?)\"[^>]*?>",
+		"street_address"	:	"<span[^>]*?id=\"lblLocation\"[^>]*?>([\\w\\W]+?)<\\/span>",
+		"city"				:	"<span[^>]*?id=\"lblCity\"[^>]*?>([\\w\\W]+?)<\\/span>",
+		"offense_description_block"	:	"<td[^>]*?>\\s*<u[^>]*?>\\s*Offense\\s*<\\/u><\\/td>([\\w\\W]+?)<\\/table>",
+		"offense_description"		:	"<tr[^>]*?>\\s*<td[^>]*?>\\s*([\\w\\W]*?)<\\/td>",
+		"personal_info_rows"		:	"(<td[^>]*?>\\s*<u[^>]*?>\\s*Name\\s*<\\/u>\\s*<\\/td>[\\w\\W]+?)<tr[^>]*?>\\s*<td[^>]*?>\\s*<hr[^>]*?>\\s*<\\/td>\\s*<\\/tr>",
+		"arrest_description"		:	"<img[^>]*?alt=\"briefsummary\\.jpg\"[^>]*?>[\\w\\W]+?<\\/table>([\\w\\W]+?)<\\/table>",
+		"public_report_full_name"	:	"<td[^>]*?>\\s*<u[^>]*?>\\s*Name\\s*<\\/u><\\/td>([\\w\\W]+?)<\\/table>",
+		"age"						:	"<td[^>]*?>\\s*<u[^>]*?>\\s*Age\\s*<\\/u><\\/td>[\\w\\W]*<td[^>]*?>\\s*[FM]\\s*<\\/td>\\s*<td[^>]*?>\\s*(\\d+)\\s*<\\/td>"		
+	},
+	"log_config"	:
+	{
+		"version":1,
+		"root":{
+			"handlers" : ["console"],
+			"level": "INFO"
+		},
+		"handlers":{
+			"console":{
+				"formatter": "con_out",
+				"class": "logging.StreamHandler",
+				"level": "DEBUG"
+			}
+		},
+		"formatters":{
+			"std_out": {
+				"format": "%(asctime)s : %(levelname)s : %(module)s : %(funcName)s : %(lineno)d : Log : %(message)s",
+				"datefmt":"%d-%m-%Y %I:%M:%S"
+			},
+			"con_out":	{
+				"format":	"%(asctime)s : %(levelname)s : %(module)s : %(funcName)s : %(lineno)d : Log : %(message)s",
+				"datefmt":"%d-%m-%Y %I:%M:%S"
+			}
+		}
+	}
+}

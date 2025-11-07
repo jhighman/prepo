@@ -1,0 +1,112 @@
+{
+  "type": "object",
+  "properties": {
+	"Name": {
+	  "type": "string"
+	},
+	"First Name": {
+	  "type": "string"
+	},
+	"Last Name": {
+	  "type": "string"
+	},
+	"State": {
+	  "type": "string"
+	},
+	"Address": {
+	  "type": "string"
+	},
+	"Country": {
+	  "type": "string"
+	},
+	"County": {
+	  "type": "string"
+	},
+	"PersonBioId": {
+	  "type": "string"
+	},
+	"Medical Class": {
+	  "type": "string"
+	},
+	"Medical Date": {
+	  "type": "string"
+	},
+	"Certificate": {
+	  "type": "array",
+	  "items": {
+		  "type": "object",
+		  "properties": {
+			"LicenseTypeName": {
+			  "type": "string"
+			},
+			"IssueYear": {
+			  "type": "string"
+			},
+			"IssueMonth": {
+			  "type": "string"
+			},
+			"IssueDay": {
+			  "type": "string"
+			},
+			"Ratings": {
+			  "type": "array",
+			  "items": {
+				  "type": "string"
+				}
+			},
+			"Type Ratings": {
+			  "type": "string"
+			},
+			"Limit": {
+			  "type": "string"
+			}
+		  },
+		  "required": [
+			"LicenseTypeName",
+			"IssueYear",
+			"IssueMonth",
+			"IssueDay",
+			"Ratings",
+			"Type Ratings",
+			"Limit"
+		  ]
+		}
+	},
+	"LicenseNumber": {
+	  "type": "string"
+	},
+	"LicenseTypeCode": {
+	  "type": "string"
+	},
+	"LicenseStatus": {
+	  "type": "string"
+	},
+	"BasicMed Course Date": {
+	  "type": "string"
+	},
+	"BasicMed CMEC Date": {
+	  "type": "string"
+	},
+	"Comments": {
+	  "type": "string"
+	}
+  },
+  "required": [
+	"Name",
+	"First Name",
+	"Last Name",
+	"State",
+	"Address",
+	"Country",
+	"County",
+	"PersonBioId",
+	"Medical Class",
+	"Medical Date",
+	"Certificate",
+	"LicenseNumber",
+	"LicenseTypeCode",
+	"LicenseStatus",
+	"BasicMed Course Date",
+	"BasicMed CMEC Date"
+  ]
+}
